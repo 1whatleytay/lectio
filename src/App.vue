@@ -9,6 +9,12 @@
 </template>
 
 <style>
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+</style>
+
+<style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
