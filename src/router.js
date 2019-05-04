@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 import Recording from './components/Recording.vue'
+import Analytics from './components/Analytics.vue'
 
 Vue.use(Router)
 
@@ -16,9 +17,14 @@ export default new Router({
       component: Home
     },
     {
+      path: '/analytics-test',
+      name: 'analytics',
+      component: Analytics
+    },
+    {
       path: '/recording-test',
       name: 'recording',
       component: Recording
-    }
+    },
   ]
 })

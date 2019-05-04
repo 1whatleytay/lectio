@@ -1,0 +1,24 @@
+{
+  "session": 1,
+  "results": {
+    "total": 10,
+    "correct": 8,
+    "words": [
+      { "word": "World", "state": true },
+      { "word": "Jittery", "state": true },
+      { "word": "Headphones", "state": true },
+      { "word": "Alexa", "state": false },
+      { "word": "Google", "state": true },
+      { "word": "Wire", "state": false },
+      { "word": "Floor", "state": true },
+      { "word": "Computer", "state": true },
+      { "word": "Window", "state": true },
+      { "word": "Serious", "state": true }
+    ]
+  },
+  "user": {
+    "name": "Taylor",
+    "rank": 1,
+    "nemesis": "supercalafragalisticexpealadocious"
+  }
+}
