@@ -12,6 +12,7 @@
 @tailwind components;
 @tailwind utilities;
 </style>
+
 <style>
   #app{
     text-align: center;
@@ -24,4 +25,12 @@
     margin-bottom: 1em;
   }
 
+  @font-face {
+    font-family: 'Dyslexie';
+    src: url('/fonts/Dyslexie_Regular_149888.ttf');
+  }
+
+  div {
+    font-family: 'Dyslexie';
+  }
 </style>
