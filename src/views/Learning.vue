@@ -44,8 +44,10 @@ export default {
 
       if (correct) {
         this.index++
-        if (this.index >= this.words.length) {
-
+        if (true || this.index >= this.words.length) {
+          axios.get('/requests/analytics-1.json').then((request) => {
+            this.$emit('finished', request.data)
+          })
         } else if (keepListening) {
           this.$refs['recording'].startRecording()
         }

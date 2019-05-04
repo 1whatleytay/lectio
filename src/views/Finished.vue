@@ -1,4 +1,5 @@
 <template>
+  <Analytics :info="info"/>
 </template>
 
 <script>
@@ -8,11 +9,10 @@ export default {
   name: 'Finished',
 
   components: { Analytics },
+  props: [ 'info' ],
 
-  data() {
-    return {
-
-    }
-  },
+  mounted() {
+    console.log(this.info)
+  }
 }
 </script>

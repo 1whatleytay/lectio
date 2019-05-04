@@ -1,21 +1,31 @@
 <template>
   <div>
+    <Learning v-if="stage === 'Learning'" @finished="nextLearning"/>
+    <Finished v-if="stage === 'Finished'" :info="finishedInfo"/>
   </div>
 </template>
 
 <script>
-import Testing from './Testing.vue'
+import Learning from './Learning.vue'
 import Finished from './Finished.vue'
-
-const Stage = {
-  LEARNING = 0,
-  TESTING = 1,
-  FINISHED = 2,
-}
 
 export default {
   name: 'Lesson',
 
-  components: { Testing, Finished }
+  components: { Learning, Finished },
+
+  data() {
+    return {
+      stage: 'Learning',
+      finishedInfo: { },
+    }
+  },
+
+  methods: {
+    nextLearning(info) {
+      this.finishedInfo = info
+      this.stage = 'Finished'
+    }
+  }
 }
 </script>
