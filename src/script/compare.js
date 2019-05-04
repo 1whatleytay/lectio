@@ -1,7 +1,7 @@
-function check(str, correct) {
+export default function compare(str, correct) {
   var incorrect_array = [];
-  var str_array = str.split(" ");
-  var correct_array = correct.split(' ');
+  var str_array = str.trim().toLowerCase().split(" ");
+  var correct_array = correct.trim().toLowerCase().split(' ');
 
   for (var i = 0; i < correct_array.length; i++) {
 
@@ -17,5 +17,3 @@ function check(str, correct) {
 
   return incorrect_array;
 }
-
-console.log(check("thsi is an imperfect peice of tect", "this is a perfect peice of text"));
