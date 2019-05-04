@@ -20,7 +20,7 @@ function process(text) {
 }
 
 export default {
-  name: 'Testing',
+  name: 'Learning',
 
   components: { Recording },
 

@@ -6,7 +6,7 @@ import Recording from './components/Recording.vue'
 import Analytics from './components/Analytics.vue'
 
 // Views
-import Testing from './views/Testing.vue'
+import Learning from './views/Learning.vue'
 
 Vue.use(Router)
 
@@ -15,9 +15,9 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/testing',
-      name: 'testing',
-      component: Testing
+      path: '/learning',
+      name: 'learning',
+      component: Learning
     },
 
     // Tests
