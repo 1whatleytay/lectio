@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 800 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <path d="M-12,235C-12,235 149.743,120.116 341,236C532.257,351.884 816,205 816,205L818,-28L-14,-19L-12,235Z" style="fill:url(#_Linear1);"/>
+    <defs>
+        <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(832,0,0,308.536,-14,126.268)"><stop offset="0" style="stop-color:rgb(0,199,255);stop-opacity:1"/><stop offset="1" style="stop-color:rgb(0,138,255);stop-opacity:1"/></linearGradient>
+    </defs>
+</svg>
