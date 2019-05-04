@@ -1,8 +1,8 @@
 <template>
-  <div class="w-3/4 mx-auto border rounded p-4 text-center">
+  <div class="p-4 text-center">
     <button class="w-24 h-24 record-button rounded-full cursor-pointer mb-4"
-      v-bind:class="{ 'opacity-50 cursor-not-allowed': !isFinal }" @click="startRecording()"></button>
-    <div class="center-text text-4xl" v-bind:class="{ 'blur': !isFinal }">{{ text }}</div>
+      v-bind:class="{ 'opacity-50 cursor-not-allowed': !isFinal }" @click="startRecording"></button>
+    <div class="center-text text-4xl h-min-text" v-bind:class="{ 'blur': !isFinal }">{{ text }}</div>
   </div>
 </template>
 
@@ -10,7 +10,6 @@
 import Artyom from 'artyom.js'
 
 const artyomDebug = true;
-const artyom = new Artyom();
 
 export default {
   name: 'Recording',
@@ -19,13 +18,13 @@ export default {
     return {
       artyom: new Artyom(),
       isFinal: true,
-      text: 'Learning Starts Here'
+      text: ''
     }
   },
 
   mounted() {
     // Init Artyom
-    artyom.initialize({
+    this.artyom.initialize({
       // English
       lang: 'en-US',
       // Enable Speach Recognition
@@ -42,7 +41,7 @@ export default {
       this.isFinal = true;
 
       // Set the listener.
-      artyom.remoteProcessorService(this.listen)
+      this.artyom.remoteProcessorService(this.listen)
     })
   },
 
@@ -61,7 +60,7 @@ export default {
     startRecording() {
       this.isFinal = false
       this.text = ''
-      artyom.fatality()
+      this.$emit('record')
     }
   }
 }
@@ -72,6 +71,10 @@ export default {
   background-color: red;
   background-image: url('/ui/record.png');
   background-size: cover;
+}
+
+.h-min-text {
+  min-height: 2.4rem;
 }
 
 .blur {

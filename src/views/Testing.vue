@@ -1,0 +1,62 @@
+<template>
+  <div class="w-3/4 mx-auto border border-grey rounded text-center">
+    <div class="text-right m-2">{{ index + 1 }}/{{ words.length }}</div>
+    <div class="text-4xl mb-2" v-bind:class="{ 'text-red': incorrect }">
+      {{ words.length > index ? words[index] : '' }}
+    </div>
+    <Recording ref="recording" @record="tryAgain" @finished="checkAnswer"/>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+
+import Recording from '../components/Recording.vue'
+
+const keepListening = true;
+
+function process(text) {
+  return text.trim().toLowerCase()
+}
+
+export default {
+  name: 'Testing',
+
+  components: { Recording },
+
+  data() {
+    return {
+      index: 0,
+      words: [ ],
+      incorrect: false,
+    }
+  },
+
+  mounted() {
+    axios.get('/requests/words-1.json').then((request) => {
+      this.words = request.data.words
+    })
+  },
+
+  methods: {
+    checkAnswer(result) {
+      const correct = (process(result) === process(this.words[this.index]))
+
+      if (correct) {
+        this.index++
+        if (this.index >= this.words.length) {
+
+        } else if (keepListening) {
+          this.$refs['recording'].startRecording()
+        }
+      } else {
+        this.incorrect = true
+      }
+    },
+
+    tryAgain() {
+      this.incorrect = false
+    }
+  }
+}
+</script>
