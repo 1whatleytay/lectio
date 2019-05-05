@@ -30,8 +30,10 @@ export default {
   mounted() {
     getState().state = 'Comfy'
 
-    axios.get("http://142.1.5.223:1645/users/112").then(res => {
+    axios.get(`http://142.1.5.223:1645/users/${getState().userId}`).then(res => {
       this.msg = res.data;
+      console.log(this.msg)
+      getState().user = this.msg.name
     })
   },
 
