@@ -13,7 +13,7 @@ export default {
   name: 'Recording',
 
   components: { SectionedText },
-  props: [ 'short', 'incorrect' ],
+  props: [ 'short', 'incorrect', 'mimic' ],
 
   data() {
     return {
@@ -28,14 +28,23 @@ export default {
     this.recognition.lang = 'en-US'
     this.recognition.continuous = true
     this.recognition.interimResults = true
-    this.recognition.maxAlternatives = 1
+    this.recognition.maxAlternatives = 3
     this.recognition.onresult = this.listen
   },
 
   methods: {
     listen(data) {
       const last = data.results[data.results.length - 1]
+
       this.text = last[0].transcript
+      if (this.mimic) {
+        for (let res in last) {
+          if (res.transcript === this.mimic) {
+            this.text = res.transcript
+            break
+          }
+        }
+      }
 
       if (last.isFinal) {
         this.isFinal = true
@@ -55,10 +64,11 @@ export default {
     },
 
     close() {
+      this.recognition.stop()
+      this.isFinal = true
       if (this.currentTimeout) {
         clearTimeout(this.currentTimeout)
       }
-      this.recognition.stop()
     },
   }
 }

@@ -1,7 +1,9 @@
 <template>
   <div>
     <Analytics v-if="user" :user="user"/>
-    <router-link tag="a" to="/hub">Back</router-link>
+    <router-link tag="a" to="/hub">
+      <button class="bg-lectio rounded w-16 h-16 mt-8 text-white back"></button>
+    </router-link>
   </div>
 </template>
 
@@ -29,3 +31,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.back {
+  background-image: url('/ui/left.svg');
+  background-size: cover;
+}
+</style>

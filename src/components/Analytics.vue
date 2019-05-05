@@ -10,9 +10,9 @@
       </div>
     </div>
     <div v-if="user.sessions" class="w-full">
-      <div class="text-4xl m-2"> Words Studied </div>
-      <div v-for="(word, id) in user.sessions.flatMap(s => s.correct)" v-bind:key="id">{{ word }}</div>
-      <div v-for="(word, id) in user.sessions.flatMap(s => s.incorrect)" v-bind:key="id" class="text-red">{{ word }}</div>
+      <div class="text-4xl m-2">Words Practiced</div>
+      <div v-for="(word, id) in user.sessions[user.sessions.length - 1].correct" v-bind:key="id">{{ word }}</div>
+      <div v-for="(word, id) in user.sessions[user.sessions.length - 1].incorrect" v-bind:key="id" class="text-red">{{ word }}</div>
     </div>
   </div>
 </template>
