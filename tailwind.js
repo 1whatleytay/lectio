@@ -128,7 +128,7 @@ let colors = {
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
 
-  'lectio': '#07C9DD'
+  'lectio': '#00C7FF'
 }
 
 module.exports = {

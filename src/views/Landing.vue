@@ -5,7 +5,18 @@
     <h1 class="mx-auto" style="position:relative; color:white; top:0; margin-top:11%">Lectio</h1>
     <h2 class="mx-auto" style="position:relative; color:white; top:0; margin-top:1%">Reading Made Better</h2>
     </div>
-		<div class="test2"></div>
+    
+    <router-link to="/hub">
+		<div class="test2 mx-auto">
+      <h1 style="color:white; font-size:30px; margin-top: 70px; border-radius:5px ">Log In</h1>
+    </div>
+    </router-link>
+    
+    <router-link to="/hub">
+    <div class="test3 mx-auto">
+      <h1 style="color:#07C9DD; font-size:30px; margin-top: 70px; border-radius:50px">Sign up</h1>
+    </div>
+    </router-link>
 	</div>
   <div class="book">
   </div>
@@ -99,10 +110,21 @@
     z-index: 90;
 	}
 	.test2{
-		width: 35%;
-		height: 35vh;
-		background: black;
+    position:absolute;
+		width: 15%;
+		height: 170px;
+		background: #07C9DD;
 		margin-top: 15vh;
-		margin-left: 32.5%;
+		margin-left: 25%;
+	}
+  	.test3{
+    margin: 20px;
+    position:absolute;
+    margin-left: 60%;
+		width: 15%;
+		height: 170px;
+		background: white;
+		margin-top: 15vh;
+		margin-right: 25%;
 	}
 </style>
