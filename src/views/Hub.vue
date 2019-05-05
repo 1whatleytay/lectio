@@ -19,9 +19,9 @@ export default {
   components: {
     Analysis
   },
-  data(){
+  data() {
     return{
-      msg: {}
+      msg: { }
     }
   },
   mounted() {
