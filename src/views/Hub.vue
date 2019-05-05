@@ -12,17 +12,29 @@
   </div>
   <br><br>
 
-  <Analysis />
+  <Analysis :info="msg"/>
 </div>
 </template>
 
 <script>
 import Analysis from '@/components/Analytics.vue';
+import axios from 'axios';
 
 export default {
   components: {
     Analysis
-  }
+  },
+  data(){
+    return{
+      msg: {}
+    }
+  },
+  mounted() {
+    axios.get("/requests/analytics-1.json").then(e => {
+      this.msg = e.data;
+    })
+  },
+
 }
 </script>
 
