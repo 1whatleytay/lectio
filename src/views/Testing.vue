@@ -1,6 +1,9 @@
 <template>
   <div class="w-3/4 mx-auto border border-grey rounded text-center">
-    <div class="text-right m-2">{{ index + 1 }}/{{ tests.length }}</div>
+    <div class="text-right m-2">
+      <button class="bg-yellow rounded" @click="skip">Skip</button>
+      {{ index + 1 }}/{{ tests.length }}
+    </div>
     <SectionedText :text="text" :incorrect="incorrect"/>
     <Loading :current="index + 1" :max="tests.length" color="bg-blue-dark"/>
     <Recording :incorrect="incorrect" @finished="checkAnswer"/>
@@ -39,20 +42,27 @@ export default {
   methods: {
     checkAnswer(result) {
       this.incorrect = compare(result, this.tests[this.index])
-      this.wrongWords = this.wrongWords.concat(this.incorrect)
+      this.wrongWords = this.wrongWords.concat(this.incorrect).filter(e => e.length > 2)
+      this.allWords = this.allWords.concat(clean(this.tests[this.index]).split(' '))
+
+      console.log(this.allWords + ' - ' + this.wrongWords)
 
       if (this.incorrect.length === 0) {
-        this.index++
-        if (this.tests.length <= this.index) {
-          this.$emit('finished', {
-            correct: this.allWords.filter((e) => !this.wrongWords.includes(e)),
-            incorrect: this.wrongWords
-          })
-          return
-        }
+        this.skip()
       }
 
       this.text = this.tests[this.index]
+    },
+
+    skip() {
+      this.index++
+      if (this.tests.length <= this.index) {
+        this.$emit('finished', {
+          correct: this.allWords.filter((e) => !this.wrongWords.includes(e)),
+          incorrect: this.wrongWords
+        })
+        return
+      }
     }
   }
 }

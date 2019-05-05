@@ -1,11 +1,14 @@
 <template>
   <div class="w-3/4 mx-auto border border-grey rounded text-center">
-    <div class="text-right m-2">{{ index + 1 }}/{{ words.length }}</div>
+    <div class="text-right m-2">
+      <button class="bg-yellow rounded">Skip</button>
+      {{ index + 1 }}/{{ words.length }}
+    </div>
     <div class="text-4xl mb-2" v-bind:class="{ 'text-red': incorrect }">
       {{ words.length > index ? words[index] : '' }}
     </div>
     <Loading :current="index + 1" :max="words.length" color="bg-red"/>
-    <Recording ref="recording" short="true" @record="tryAgain" @finished="checkAnswer"/>
+    <Recording ref="recording" short="true" :mimic="words[index]" @record="tryAgain" @finished="checkAnswer"/>
   </div>
 </template>
 
