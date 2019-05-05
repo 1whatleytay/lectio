@@ -1,6 +1,6 @@
 <template>
   <div class="w-4/5 p-4 mx-auto rounded results border border-grey text-center">
-    <div class="text-4xl mb-8">Analytics for: {{ user.name }}</div>
+    <div class="text-4xl mb-8">Analytics for {{ user.name }}</div>
     <div class="flex flex-wrap mb-4 sm:mb-10">
       <div class="w-1/2"> <canvas ref="pie"/> </div>
       <div class="w-1/2"> <canvas ref="line"/> </div>
@@ -10,9 +10,17 @@
       </div>
     </div>
     <div v-if="user.sessions" class="w-full">
-      <div class="text-4xl m-2">Words Practiced</div>
-      <div v-for="(word, id) in user.sessions[user.sessions.length - 1].correct" v-bind:key="id">{{ word }}</div>
-      <div v-for="(word, id) in user.sessions[user.sessions.length - 1].incorrect" v-bind:key="id" class="text-red">{{ word }}</div>
+      <div class="text-4xl m-2 w-full">Words Practiced</div>
+      <div class="flex">
+        <div class="w-1/2">
+          <div v-for="(word, id) in user.sessions[user.sessions.length - 1].correct"
+            v-bind:key="id">{{ word }}</div>
+        </div>
+        <div class="w-1/2 text-red">
+          <div v-for="(word, id) in user.sessions[user.sessions.length - 1].incorrect"
+            v-bind:key="id" class="w-1/2">{{ word }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

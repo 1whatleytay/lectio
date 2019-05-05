@@ -19,7 +19,7 @@ export default {
   components: { Analytics },
   data() {
     return {
-      user: { }
+      user: null
     }
   },
 

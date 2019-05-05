@@ -45,10 +45,8 @@ export default {
       this.wrongWords = this.wrongWords.concat(this.incorrect).filter(e => e.length > 2)
       this.allWords = this.allWords.concat(clean(this.tests[this.index]).split(' '))
 
-      console.log(this.allWords + ' - ' + this.wrongWords)
-
       if (this.incorrect.length === 0) {
-        this.skip()
+        if (this.skip()) { return }
       }
 
       this.text = this.tests[this.index]
@@ -61,8 +59,11 @@ export default {
           correct: this.allWords.filter((e) => !this.wrongWords.includes(e)),
           incorrect: this.wrongWords
         })
-        return
+        return true
       }
+
+      this.text = this.tests[this.index]
+      return false
     }
   }
 }
