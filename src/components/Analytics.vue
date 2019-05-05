@@ -1,9 +1,9 @@
 <template>
-  <div class="w-4/5 p-4 mx-auto rounded results border border-grey text-center">
-    <div class="text-4xl mb-8">Analytics for: {{ info.user.name }}</div>
-    <div class="flex flex-wrap mb-4 sm:mb-10">
-      <div class="lg:w-1/3 sm:w-full">
-        <canvas ref="pie" class="w-1/3"/>
+<div class="w-4/5 p-4 mx-auto rounded results border border-grey text-center">
+  <div class="text-4xl mb-8">Analytics for: {{ info.user.name }}</div>
+  <div class="flex flex-wrap mb-4 sm:mb-10">
+    <div class="lg:w-1/3 sm:w-full">
+      <canvas ref="pie" class="w-1/3"/>
       </div>
       <div class="lg:w-1/3 sm:w-full">
         <canvas ref="line" class="w-1/3"/>
@@ -33,12 +33,12 @@ import Chart from 'chart.js'
 export default {
   name: 'Analytics',
 
-  props: [ 'info' ],
+  props: ['info'],
 
   data() {
     return {
       pieChart: null,
-      lineChart:null
+      lineChart: null
     }
   },
 
@@ -49,51 +49,62 @@ export default {
     this.pieChart = new Chart(this.$refs['pie'].getContext('2d'), {
       type: 'pie',
       data: {
-        labels: [ 'Word', 'Hello', 'sdfjkl', 'sfjl', 'ldjf' ],
-        datasets: [
-          {
-            label: 'Results',
-            data: [
-              this.info.results.Word,
-              this.info.results.Hello,
-              this.info.results.sdfjkl,
-              this.info.results.sfjl,
-              this.info.results.ldjf
-            ],
-            backgroundColor: [
-              'rgba(99, 255, 132, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-              'rgba(235, 54, 54, 0.2)',
-            ],
-          }
-        ]
+        labels: ["a", "b", "c", "d", "e"],
+        datasets: [{
+          label: 'Results',
+          data: [
+            this.info.results.Word,
+            this.info.results.Hello,
+            this.info.results.sdfjkl,
+            this.info.results.sfjl,
+            this.info.results.ldjf
+          ],
+          backgroundColor: [
+            'rgba(99, 255, 132, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+            'rgba(235, 54, 54, 0.2)',
+          ],
+        }]
       }
-    })
+    });
+
+    // The line chart over time
     this.lineChart = new Chart(this.$refs['line'].getContext('2d'), {
       type: 'line',
       data: {
-            label: ['Session 1','Session 2','Session 2'],
-            datasets: {
-              data: [
-                this.info.results.incorrects.sessions[0],
-                this.info.results.incorrects.sessions[1],
-                this.info.results.incorrects.sessions[2]
-              ],
-             backgroundColor: [
-              'rgba(99, 255, 132, 0.2)',
-              'rgba(99, 255, 132, 0.2)',
-              'rgba(99, 255, 132, 0.2)',
-            ]
-            },
-          },
+        labels: ['Session 1', "Session 2", "Session3"],
+        datasets: [{
+          data: [
+            this.info.results.incorrects.sessions[0],
+            this.info.results.incorrects.sessions[1],
+            this.info.results.incorrects.sessions[2],
+            // 1, 0.5, 0.3, 0.5
+          ],
+          backgroundColor: [
+            'rgba(99, 255, 132, 0.2)',
+            'rgba(99, 255, 132, 0.2)',
+            'rgba(99, 255, 132, 0.2)',
+          ]
+        }],
+      },
+      options:{
+        scales:{
+          yAxes:[{
+            display: true,
+            ticks:{
+              beginAtZero:true
+            }
+          }]
+        }
+      }
     });
   }
 }
