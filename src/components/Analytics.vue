@@ -43,8 +43,8 @@ export default {
             {
               label: 'Results',
               data: [
-                this.user.sessions[0].correct.length,
-                this.user.sessions[0].incorrect.length
+                this.user.sessions[this.user.sessions.length - 1].correct.length,
+                this.user.sessions[this.user.sessions.length - 1].incorrect.length
               ],
               backgroundColor: [
                 'rgba(99, 255, 132, 0.2)',
