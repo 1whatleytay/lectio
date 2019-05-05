@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="bg-lectio" id="nav">
+  <div class="bg-lectio" id="nav">
       <p class="text-left">
         Lectio
         <span class="float-right text-2xl">
@@ -14,6 +14,20 @@
     <div class="py-8"></div>
   </div>
 </template>
+
+<script>
+import { NavState } from './script/nav.js'
+
+export default {
+  name: 'App',
+
+  data() {
+    return {
+      navState: new NavState()
+    }
+  },
+}
+</script>
 
 <style>
 @tailwind preflight;
