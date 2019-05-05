@@ -6,7 +6,7 @@
         <span class="float-right text-2xl">
           {{ name }}
           <br>
-          thing
+          #{{ rank }} in the world
         </span>
       </p>
     </div>
