@@ -4,32 +4,32 @@
     <div class="text-4xl mb-2" v-bind:class="{ 'text-red': incorrect }">
       {{ words.length > index ? words[index] : '' }}
     </div>
+    <Loading :current="index + 1" :max="words.length" color="bg-red"/>
     <Recording ref="recording" short="true" @record="tryAgain" @finished="checkAnswer"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { clean } from '../script/compare.js'
 
 import Recording from '../components/Recording.vue'
-
-function process(text) {
-  return text.trim().toLowerCase()
-}
+import Loading from '../components/Loading.vue'
 
 export default {
   name: 'Learning',
 
-  components: { Recording },
+  components: { Recording, Loading },
+  props: [ 'words' ],
 
   data() {
     return {
       index: 0,
-      words: [ ],
       incorrect: false,
     }
   },
 
+<<<<<<< HEAD
   mounted() {
      axios.get('/requests/analytics-1.json').then((request) => {
        this.$emit('finished', request.data)
@@ -40,9 +40,11 @@ export default {
     })
   },
 
+=======
+>>>>>>> d358b683840decfbd5af282f66a336f89cbcd05e
   methods: {
     checkAnswer(result) {
-      const correct = (process(result) === process(this.words[this.index]))
+      const correct = (clean(result) === clean(this.words[this.index]))
 
       if (correct) {
         this.index++

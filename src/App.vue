@@ -4,6 +4,7 @@
       Lectio
     </div>
     <router-view />
+    <div class="py-8"></div>
   </div>
 </template>
 
