@@ -7,7 +7,7 @@
     <br>
     <br>
     <div class="mx-auto" id="start_btn">
-      <img :src="`${publicPath}ui/play.svg`"></img>
+      <img src="/ui/play.svg"></img>
     </div>
   </div>
   <br><br>
