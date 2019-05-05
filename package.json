@@ -12,7 +12,9 @@
     "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
     "register-service-worker": "^1.6.2",
+    "speak-tts": "^2.0.8",
     "tailwindcss": "^0.7.4",
+    "text-to-speech-js": "^1.1.9",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
