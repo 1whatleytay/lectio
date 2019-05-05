@@ -8,6 +8,7 @@ import Analytics from './components/Analytics.vue'
 // Views
 import Hub from './views/Hub.vue'
 import Lesson from './views/Lesson.vue'
+import Landing from './views/Landing.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path:'/hub',
       name:"hub",
       component: Hub
+    },
+    {
+      path:'/',
+      name:"landing",
+      component: Landing
     }
   ]
 })
