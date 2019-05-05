@@ -1,27 +1,24 @@
 <template>
+
 <div class="w-4/5 p-4 mx-auto rounded results border border-grey text-center">
-  <div class="text-4xl mb-8">Analytics for: {{ info.user.name }}</div>
+  <div class="text-4xl mb-8">Analytics for: {{ user.name }}</div>
   <div class="flex flex-wrap mb-4 sm:mb-10">
     <div class="lg:w-1/3 sm:w-full">
       <canvas ref="pie" class="w-1/3"/>
       </div>
+      
       <div class="lg:w-1/3 sm:w-full">
         <canvas ref="line" class="w-1/3"/>
       </div>
-      <div class="lg:w-2/3 sm:w-full text-4xl pt-12">
-        <span
-          v-bind:class="{ 'text-yellow text-5xl': info.user.rank === 1, 'text-blue text-4xl': info.user.rank !== 1 }"
-        >#{{ info.user.rank }}</span>
-        <br>in the World
+      
+      <div class="lg:w-2/3 sm:w-full text-5xl pt-12">
+        #{{ user.rank }} in the World
       </div>
     </div>
     <div class="w-full">
-      <div class="text-4xl m-2">Words Studied</div>
-      <div
-        v-for="(word, id) in info.results.words"
-        v-bind:key="id"
-        v-bind:class="{ 'text-red': !word.state }"
-      >{{ word.word }}</div>
+      <div class="text-4xl m-2"> Words Studied </div>
+      <div v-for="word in user.sessions.flatMap(s => s.correct)" v-bind:key="word">{{ word }}</div>
+      <div v-for="word in user.sessions.flatMap(s => s.incorrect)" v-bind:key="word" class="text-red">{{ word }}</div>
     </div>
   </div>
 </template>
@@ -33,7 +30,7 @@ import Chart from 'chart.js'
 export default {
   name: 'Analytics',
 
-  props: ['info'],
+props: [ 'user' ],
 
   data() {
     return {
@@ -49,30 +46,20 @@ export default {
     this.pieChart = new Chart(this.$refs['pie'].getContext('2d'), {
       type: 'pie',
       data: {
-        labels: ["a", "b", "c", "d", "e"],
-        datasets: [{
-          label: 'Results',
-          data: [
-            this.info.results.Word,
-            this.info.results.Hello,
-            this.info.results.sdfjkl,
-            this.info.results.sfjl,
-            this.info.results.ldjf
-          ],
-          backgroundColor: [
-            'rgba(99, 255, 132, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-            'rgba(235, 54, 54, 0.2)',
-          ],
-        }]
+        labels: [ 'Correct', 'Incorrect' ],
+        datasets: [
+          {
+            label: 'Results',
+            data: [
+              this.sessions[0].correct.length,
+              this.sessions[0].incorrect.length
+            ],
+            backgroundColor: [
+              'rgba(99, 255, 132, 0.2)',
+              'rgba(235, 54, 54, 0.2)',
+            ],
+          }
+        ]
       }
     });
 

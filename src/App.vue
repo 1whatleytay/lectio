@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <div v-if="navState.state !== 'NoShow'">
-      <div v-if="navState.state === 'Normal'" class="shadow text-5xl" :class="navState.color" id="nav">
+  <div class="bg-lectio" id="nav">
+      <p class="text-left">
         Lectio
-      </div>
-      <div v-if="navState.state === 'Comfy'" class="shadow flex" :class="navState.color" id="nav">
-        <div class="w-1/2 text-5xl">Lectio</div>
-        <div class="w-1/2 text-xl mt-4">Welcome {{ navState.user }}</div>
-      </div>
+        <span class="float-right text-2xl">
+          {{ name }}
+          <br>
+          thing
+        </span>
+      </p>
     </div>
     <router-view />
     <div class="py-8"></div>
@@ -33,6 +34,25 @@ export default {
 @tailwind components;
 @tailwind utilities;
 </style>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      name: "",
+      rank: -1,
+    }
+  },
+  mounted() {
+    axios.get("http://142.1.5.223:1645/users/0").then(res => {
+      this.name = res.data.name;
+      this.rank = res.data.rank;
+    })
+  },
+}
+</script>
 
 <style>
   #app{
