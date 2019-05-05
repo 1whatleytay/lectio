@@ -43,7 +43,7 @@
     <div class="part mx-auto">
       <h1 style="color: white; font-size:40px; margin-top:160px;" class="mx-auto my-auto">Integrated</h1>
       <div class="floating_box" style="">
-        <p style=" color:white; font-size: 25px;">Lectio allows you to pick up any public domain book and read in comfort while Lectio listens to you and passively analyses the spoken words to determine potential areas of focus during future sessions. This data then get linked to your account and you can practice them in the web app.</p>
+        <p style=" color:white; font-size: 25px;">Lectio allows you to pick up any public domain book and read in comfort while Lectio listens to you and passively analyses the spoken words to determine potential areas of focus during future sessions. This data then gets linked to your account and you can practice them in the web app.</p>
       </div>
     </div>
 
