@@ -18,7 +18,7 @@ export default {
 
   data() {
     return {
-      stage: 'Testing',
+      stage: 'Finished',
       words: [ ],
       info: { },
     }

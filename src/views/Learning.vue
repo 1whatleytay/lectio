@@ -29,6 +29,19 @@ export default {
     }
   },
 
+<<<<<<< HEAD
+  mounted() {
+     axios.get('/requests/analytics-1.json').then((request) => {
+       this.$emit('finished', request.data)
+    })
+
+    axios.get('/requests/words-1.json').then((request) => {
+      this.words = request.data.words
+    })
+  },
+
+=======
+>>>>>>> d358b683840decfbd5af282f66a336f89cbcd05e
   methods: {
     checkAnswer(result) {
       const correct = (clean(result) === clean(this.words[this.index]))
