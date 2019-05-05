@@ -1,14 +1,9 @@
 <template>
 <div>
-  <div class="" id="btn_box">
-    <h1 style="font-size:4rem">
-      Start
-    </h1>
-    <br>
-    <br>
-    <div class="mx-auto" id="start_btn">
-      <img src="/ui/play.svg"></img>
-    </div>
+  <div class="text-center">
+      <router-link to="/lesson">
+        <button class="play-button w-64 h-64 rounded-full"></button>
+      </router-link>
   </div>
   <br><br>
 
@@ -39,11 +34,6 @@ export default {
 </script>
 
 <style>
-#btn_box {
-  padding: 1.2em;
-  border-radius: 2em;
-}
-
 #start_btn {
 
   color: #111;
@@ -54,5 +44,8 @@ export default {
   overflow: hidden;
 }
 
-#start_btn:hover {}
+.play-button {
+  background-image: url('/ui/play.svg');
+  background-size: cover;
+}
 </style>
