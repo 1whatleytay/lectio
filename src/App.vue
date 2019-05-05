@@ -1,7 +1,14 @@
 <template>
   <div id="app">
-    <div class="bg-lectio shadow" id="nav">
-      Lectio
+    <div class="bg-lectio" id="nav">
+      <p class="text-left">
+        Lectio
+        <span class="float-right text-2xl">
+          {{ name }}
+          <br>
+          thing
+        </span>
+      </p>
     </div>
     <router-view />
     <div class="py-8"></div>
@@ -13,6 +20,25 @@
 @tailwind components;
 @tailwind utilities;
 </style>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      name: "",
+      rank: -1,
+    }
+  },
+  mounted() {
+    axios.get("http://142.1.5.223:1645/users/0").then(res => {
+      this.name = res.data.name;
+      this.rank = res.data.rank;
+    })
+  },
+}
+</script>
 
 <style>
   #app{

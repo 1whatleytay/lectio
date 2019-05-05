@@ -11,8 +11,8 @@
     </div>
     <div class="w-full">
       <div class="text-4xl m-2"> Words Studied </div>
-      <div v-for="word in user.sessions[0].correct" v-bind:key="word">{{ word }}</div>
-      <div v-for="word in user.sessions[0].incorrect" v-bind:key="word" class="text-red">{{ word }}</div>
+      <div v-for="word in user.sessions.flatMap(s => s.correct)" v-bind:key="word">{{ word }}</div>
+      <div v-for="word in user.sessions.flatMap(s => s.incorrect)" v-bind:key="word" class="text-red">{{ word }}</div>
       
     </div>
   </div>

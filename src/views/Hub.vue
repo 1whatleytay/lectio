@@ -19,14 +19,13 @@ export default {
   components: {
     Analysis
   },
-  data(){
-    return{
+  data() {
+    return {
       msg: {}
     }
   },
   mounted() {
     axios.get("http://142.1.5.223:1645/users/0").then(res => {
-      console.log(res.data);
       this.msg = res.data;
     })
   },
