@@ -3,3 +3,4 @@ export function requestSpeak(inputStr, callback){
   // debugger;
   utterance.onend = callback;
   speechSynthesis.speak(utterance);
+}
