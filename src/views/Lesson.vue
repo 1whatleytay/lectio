@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Testing v-if="stage === 'Testing'" @finished="nextTesting"/>
-    <Learning v-if="stage === 'Learning'" @finished="nextLearning"/>
+    <Testing v-if="stage === 'Testing'" :tests="tests" @finished="nextTesting"/>
+    <Learning v-if="stage === 'Learning'" :words="words" @finished="nextLearning"/>
     <Finished v-if="stage === 'Finished'" :info="info"/>
   </div>
 </template>
@@ -11,6 +11,8 @@ import Testing from './Testing.vue'
 import Learning from './Learning.vue'
 import Finished from './Finished.vue'
 
+import { getState } from '../script/nav.js'
+
 export default {
   name: 'Lesson',
 
@@ -19,15 +21,29 @@ export default {
   data() {
     return {
       stage: 'Testing',
+      tests: [ ],
       words: [ ],
       info: { },
     }
   },
 
+  mounted() {
+    getState().state = 'Normal'
+
+
+    axios.get('/requests/tests-1.json').then((request) => {
+      this.tests = request.data.tests
+    })
+  },
+
   methods: {
     nextTesting(words) {
       this.words = words
-      this.stage = 'Learning'
+      if (this.words.length === 0) {
+        this.stage = 'Finished'
+      } else {
+        this.stage = 'Learning'
+      }
     },
 
     nextLearning(info) {

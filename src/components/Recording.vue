@@ -2,15 +2,18 @@
   <div class="p-4 text-center">
     <button class="w-24 h-24 record-button rounded-full cursor-pointer mb-4"
       v-bind:class="{ 'opacity-50 cursor-not-allowed': !isFinal }" @click="startRecording"></button>
-    <div class="center-text text-4xl h-min-text" v-bind:class="{ 'blur': !isFinal }">{{ text }}</div>
+    <SectionedText :text="text" :blur="!isFinal" :incorrect="isFinal ? incorrect : [ ]"/>
   </div>
 </template>
 
 <script>
+import SectionedText from './SectionedText.vue'
+
 export default {
   name: 'Recording',
 
-  props: [ 'short' ],
+  components: { SectionedText },
+  props: [ 'short', 'incorrect' ],
 
   data() {
     return {
@@ -66,14 +69,5 @@ export default {
   background-color: red;
   background-image: url('/ui/record.png');
   background-size: cover;
-}
-
-.h-min-text {
-  min-height: 2.4rem;
-}
-
-.blur {
-  color: transparent;
-	text-shadow: 0 0 16px #000;
 }
 </style>

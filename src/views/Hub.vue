@@ -1,49 +1,49 @@
 <template>
 <div>
-  <div class="" id="btn_box">
-    <h1 style="font-size:4rem">
-      Start
-    </h1>
-    <br>
-    <br>
-    <div class="mx-auto" id="start_btn">
-      <img src="/ui/play.svg"></img>
-    </div>
+  <div class="text-center">
+    <router-link :to="needsPlacement() ? '/placement' : '/lesson'">
+      <button class="play-button w-64 h-64 rounded-full"
+        v-bind:class="{ 'place-button': needsPlacement() }"></button>
+    </router-link>
   </div>
   <br><br>
 
-  <Analysis :info="msg"/>
+  <Analysis :user="msg"/>
 </div>
 </template>
 
 <script>
-import Analysis from '@/components/Analytics.vue';
+import Analysis from '../components/Analytics.vue';
 import axios from 'axios';
+
+import { getState } from '../script/nav.js'
 
 export default {
   components: {
     Analysis
   },
-  data(){
-    return{
+  data() {
+    return {
       msg: {}
     }
   },
   mounted() {
-    axios.get("/requests/analytics-1.json").then(e => {
-      this.msg = e.data;
+    getState().state = 'Comfy'
+
+    axios.get("http://142.1.5.223:1645/users/112").then(res => {
+      this.msg = res.data;
     })
   },
 
+  methods: {
+    needsPlacement() {
+      return this.msg.sessions.length === 0
+    }
+  }
 }
 </script>
 
 <style>
-#btn_box {
-  padding: 1.2em;
-  border-radius: 2em;
-}
-
 #start_btn {
 
   color: #111;
@@ -54,5 +54,13 @@ export default {
   overflow: hidden;
 }
 
-#start_btn:hover {}
+.play-button {
+  background-image: url('/ui/play.svg');
+  background-size: cover;
+}
+
+.place-button {
+  background-image: url('/ui/place.svg');
+  background-size: cover;
+}
 </style>

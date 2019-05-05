@@ -1,63 +1,54 @@
 <template>
   <div class="w-3/4 mx-auto border border-grey rounded text-center">
     <div class="text-right m-2">{{ index + 1 }}/{{ tests.length }}</div>
-    <div class="text-4xl mb-2">
-      <span v-for="(word, id) in segments" v-bind:key="id"
-        v-bind:class="{ 'text-red': word.state }">{{ (id !== 0 ? ' ' : '') + word.word }}</span>
-    </div>
-    <Recording @finished="checkAnswer"/>
+    <SectionedText :text="text" :incorrect="incorrect"/>
+    <Loading :current="index + 1" :max="tests.length" color="bg-blue-dark"/>
+    <Recording :incorrect="incorrect" @finished="checkAnswer"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import compare from '../script/compare.js'
+import { clean, compare } from '../script/compare.js'
 
 import Recording from '../components/Recording.vue'
+import Loading from '../components/Loading.vue'
+import SectionedText from '../components/SectionedText.vue'
 
 export default {
   name: 'Testing',
 
-  components: { Recording },
+  components: { Recording, Loading, SectionedText },
+  props: [ 'tests' ],
+  watch: {
+    tests() {
+      this.text = this.tests[this.index]
+    }
+  },
 
   data() {
     return {
       index: 0,
-      tests: [ ],
-      segments: [ ],
-      incorrect: false,
+      text: '',
+      incorrect: [ ],
       wrongWords: [ ],
     }
   },
 
-  mounted() {
-    axios.get('/requests/tests-1.json').then((request) => {
-      this.tests = request.data.tests
-
-      const splits = this.tests[this.index].split(' ')
-      for (let split of splits) {
-        this.segments.push({ word: split, state: false })
-      }
-    })
-  },
-
   methods: {
     checkAnswer(result) {
-      const incorrects = compare(result, this.tests[this.index])
-      this.wrongWords.concat(incorrects)
+      this.incorrect = compare(result, this.tests[this.index])
+      this.wrongWords = this.wrongWords.concat(this.incorrect)
 
-      if (incorrects.length === 0) {
+      if (this.incorrect.length === 0) {
         this.index++
         if (this.tests.length <= this.index) {
           this.$emit('finished', this.wrongWords)
+          return
         }
       }
 
-      const splits = this.tests[this.index].split(' ')
-      this.segments = [ ]
-      for (let split of splits) {
-        this.segments.push({ word: split, state: incorrects.includes(split) })
-      }
+      this.text = this.tests[this.index]
     }
   }
 }

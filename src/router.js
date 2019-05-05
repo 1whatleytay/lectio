@@ -8,7 +8,7 @@ import Analytics from './components/Analytics.vue'
 // Views
 import Hub from './views/Hub.vue'
 import Lesson from './views/Lesson.vue'
-import Landing from './views/Landing.vue'
+import Placement from './views/Placement.vue'
 
 Vue.use(Router)
 
@@ -20,6 +20,11 @@ export default new Router({
       path: '/lesson',
       name: 'lesson',
       component: Lesson
+    },
+    {
+      path: '/placement',
+      name: 'placement',
+      component: Placement
     },
 
     // Tests
