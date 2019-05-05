@@ -31,6 +31,10 @@ export default {
   },
 
   mounted() {
+     axios.get('/requests/analytics-1.json').then((request) => {
+       this.$emit('finished', request.data)
+    })
+
     axios.get('/requests/words-1.json').then((request) => {
       this.words = request.data.words
     })

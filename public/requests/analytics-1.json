@@ -1,8 +1,17 @@
 {
   "session": 1,
   "results": {
+    "incorrects":{
+      "sessions":[
+        17, 17, 17
+      ]
+    },
     "total": 10,
-    "correct": 8,
+    "Word": 2,
+    "Hello": 2,
+    "sdfjkl": 2,
+    "sfjl": 2,
+    "ldjf": 2,
     "words": [
       { "word": "World", "state": true },
       { "word": "Jittery", "state": true },
