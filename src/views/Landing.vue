@@ -6,11 +6,19 @@
       <h1 class="mx-auto" style="position:relative; color:white; top:0; margin-top:11%">Lectio</h1>
       <h2 class="mx-auto" style="position:relative; color:white; top:0; margin-top:1%">Reading Made Better</h2>
     </div>
-    <!-- Main intro box -->
-    <div class="test2"></div>
-  </div>
-
-  <!-- book background -->
+    
+    <router-link to="/hub">
+		<div class="test2 mx-auto">
+      <h1 style="color:white; font-size:30px; margin-top: 70px; border-radius:5px ">Log In</h1>
+    </div>
+    </router-link>
+    
+    <router-link to="/hub">
+    <div class="test3 mx-auto">
+      <h1 style="color:#07C9DD; font-size:30px; margin-top: 70px; border-radius:50px">Sign up</h1>
+    </div>
+    </router-link>
+	</div>
   <div class="book">
   </div>
 
@@ -48,8 +56,8 @@
 </body>
 </template>
 
-<style>
-
+<style type="text/css">
+  
 .floating_box {
   position: absolute;
   padding: 1em;
@@ -63,53 +71,76 @@
   background-color: #07C9DD;
 }
 
-.floatl {
-  position: absolute;
-  padding: 1em;
+    .floatl{
+      box-shadow: 2.5px 5px 9px #888888;
+      margin-bottom: 25px;
+      margin-left:30%;
+      position: absolute;
+      height:300px;
+      width:500px;
+      border-radius:  5%;
+      background-color: #07C9DD;
+  }
+  .part{
+    border-color: #07C9DD;
+    width:400px;
+    height:400px;
+    margin-top:15vh;
+    background: white;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 50%;
+    background: #07C9DD
+  }
+  .show{
+    padding-bottom: 10%;
+    overflow: auto; 
+    height:auto;
+    background-image:url(/img/landing/line.svg);
+    background-repeat: no-repeat;
+    background-size:100%;
+    margin-top:15vh
+  }
+  .book{
+    position: absolute;
+    top:0;
+    z-index: -5;
+    height:100%;
+    width:100%;
+    background-image: url(/img/landing/book-svg.svg);
+    background-size: cover; 
+  }
+	.test{
+    position: relative;
+		background: url("/ui/wave.svg");
+		width: auto;
+		height: 100vh;
+    background-repeat: no-repeat;
+    background-size:100%;
+    overflow: hidden;
+    margin-top:-17em;
+    z-index: 90;
+	}
+	.test2{
+    position:absolute;
+		width: 15%;
+		height: 170px;
+		background: #07C9DD;
+		margin-top: 15vh;
+		margin-left: 25%;
+	}
+  	.test3{
+    margin: 20px;
+    position:absolute;
+    margin-left: 60%;
+		width: 15%;
+		height: 170px;
+		background: white;
+		margin-top: 15vh;
+		margin-right: 25%;
+	}
 
-  height: 300px;
-  width: 500px;
-
-  right: 1em;
-
-  border-radius: 1em;
-  background-color: #07C9DD;
-  box-shadow: 2.5px 5px 9px #888888;
-}
-
-.part {
-  border-color: #07C9DD;
-  width: 400px;
-  height: 400px;
-  margin-top: 15vh;
-  background: white;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 50%;
-  background: #07C9DD
-}
-
-.show {
-  padding-bottom: 10%;
-  overflow: auto;
-  height: auto;
-  background-image: url(/img/landing/line.svg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  margin-top: 15vh
-}
-
-.book {
-  position: absolute;
-  top: 0;
-  z-index: -5;
-  height: 100%;
-  width: 100%;
-  background-image: url(/img/landing/book-svg.svg);
-  background-size: cover;
-}
-
-.landing_page_blocker {
+  .landing_page_blocker {
   position: relative;
 
   width: auto;
@@ -123,14 +154,5 @@
 
   background-size: 100%;
   overflow: hidden;
-}
-
-.test2 {
-  width: 35%;
-  height: 35vh;
-  background: white;
-  filter:blur(250px);
-  margin-top: 15vh;
-  margin-left: 32.5%;
 }
 </style>
