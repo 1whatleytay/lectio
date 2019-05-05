@@ -1,4 +1,5 @@
-const userId = 112
+const userId = 0
+const api = 'http://142.1.5.223:1645'
 let state = { }
 
 export function getState() {
@@ -11,6 +12,7 @@ export class NavState {
     this.color = 'bg-lectio'
     this.user = 'User'
     this.userId = userId
+    this.api = api
 
     state = this
   }

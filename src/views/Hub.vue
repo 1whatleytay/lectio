@@ -8,7 +8,10 @@
   </div>
   <br><br>
 
-  <Analytics :user="user"/>
+  <div v-if="needsPlacement()" class="text-xl">
+    Start your placements.
+  </div>
+  <Analytics v-if="!needsPlacement()" :user="user"/>
 </div>
 </template>
 
@@ -22,7 +25,7 @@ export default {
   name: 'Hub',
 
   components: { Analytics },
-  
+
   data() {
     return {
       user: { }
@@ -31,7 +34,7 @@ export default {
   mounted() {
     getState().state = 'Comfy'
 
-    axios.get(`http://142.1.5.223:1645/users/${getState().userId}`).then((request) => {
+    axios.get(`${getState().api}/users/${getState().userId}`).then((request) => {
       this.user = request.data
       getState().user = this.user.name
     })

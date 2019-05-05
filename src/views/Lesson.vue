@@ -33,9 +33,9 @@ export default {
   mounted() {
     getState().state = 'Normal'
 
-    axios.get(`http://142.1.5.223:1645/users/${getState().userId}/difficulty`).then((id) => {
+    axios.get(`${getState().api}/users/${getState().userId}/difficulty`).then((id) => {
       console.log(id.data)
-      axios.get(`http://142.1.5.223:1645/tests/${id.data}`).then((request) => {
+      axios.get(`${getState().api}/tests/${id.data}`).then((request) => {
         console.log(request.data)
         this.tests = request.data.tests
       })
@@ -55,7 +55,7 @@ export default {
     },
 
     nextLearning(info) {
-      axios.post(`http://142.1.5.223:1645/users/${getState().userId}/sessions/add`, this.result)
+      axios.post(`${getState().api}/users/${getState().userId}/sessions/add`, this.result)
       this.info = info
       this.stage = 'Finished'
     },

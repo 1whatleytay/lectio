@@ -24,7 +24,7 @@ export default {
   },
 
   mounted() {
-    axios.get(`http://142.1.5.223:1645/users/${getState().userId}`).then((request) => {
+    axios.get(`${getState().api}/users/${getState().userId}`).then((request) => {
       this.user = request.data
       getState().user = this.user.name
     })
