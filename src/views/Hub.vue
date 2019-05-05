@@ -8,36 +8,41 @@
   </div>
   <br><br>
 
-  <Analysis :user="msg"/>
+  <Analytics :user="user"/>
 </div>
 </template>
 
 <script>
-import Analysis from '../components/Analytics.vue';
+import Analytics from '../components/Analytics.vue';
 import axios from 'axios';
 
 import { getState } from '../script/nav.js'
 
 export default {
-  components: {
-    Analysis
-  },
+  name: 'Hub',
+
+  components: { Analytics },
+  
   data() {
     return {
-      msg: {}
+      user: { }
     }
   },
   mounted() {
     getState().state = 'Comfy'
 
-    axios.get("http://142.1.5.223:1645/users/112").then(res => {
-      this.msg = res.data;
+    axios.get(`http://142.1.5.223:1645/users/${getState().userId}`).then((request) => {
+      this.user = request.data
+      getState().user = this.user.name
     })
   },
 
   methods: {
     needsPlacement() {
-      return this.msg.sessions.length === 0
+      if (!this.user.sessions) {
+        return false
+      }
+      return this.user.sessions.length === 0
     }
   }
 }

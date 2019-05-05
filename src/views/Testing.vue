@@ -32,6 +32,7 @@ export default {
       text: '',
       incorrect: [ ],
       wrongWords: [ ],
+      allWords: [ ],
     }
   },
 
@@ -43,7 +44,10 @@ export default {
       if (this.incorrect.length === 0) {
         this.index++
         if (this.tests.length <= this.index) {
-          this.$emit('finished', this.wrongWords)
+          this.$emit('finished', {
+            correct: this.allWords.filter((e) => !this.wrongWords.includes(e)),
+            incorrect: this.wrongWords
+          })
           return
         }
       }

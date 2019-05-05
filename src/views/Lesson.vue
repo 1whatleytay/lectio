@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 import Testing from './Testing.vue'
 import Learning from './Learning.vue'
 import Finished from './Finished.vue'
@@ -21,6 +23,7 @@ export default {
   data() {
     return {
       stage: 'Testing',
+      result: { },
       tests: [ ],
       words: [ ],
       info: { },
@@ -30,15 +33,20 @@ export default {
   mounted() {
     getState().state = 'Normal'
 
-
-    axios.get('/requests/tests-1.json').then((request) => {
-      this.tests = request.data.tests
+    axios.get(`http://142.1.5.223:1645/users/${getState().userId}/difficulty`).then((id) => {
+      console.log(id.data)
+      axios.get(`http://142.1.5.223:1645/tests/${id.data}`).then((request) => {
+        console.log(request.data)
+        this.tests = request.data.tests
+      })
     })
   },
 
   methods: {
     nextTesting(words) {
-      this.words = words
+      this.words = words.incorrect
+      this.result = words
+      console.log(this.result)
       if (this.words.length === 0) {
         this.stage = 'Finished'
       } else {
@@ -47,6 +55,7 @@ export default {
     },
 
     nextLearning(info) {
+      axios.post(`http://142.1.5.223:1645/users/${getState().userId}/sessions/add`, this.result)
       this.info = info
       this.stage = 'Finished'
     },

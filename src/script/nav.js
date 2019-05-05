@@ -1,3 +1,4 @@
+const userId = 112
 let state = { }
 
 export function getState() {
@@ -9,6 +10,7 @@ export class NavState {
     this.state = 'Normal'
     this.color = 'bg-lectio'
     this.user = 'User'
+    this.userId = userId
 
     state = this
   }

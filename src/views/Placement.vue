@@ -28,14 +28,23 @@ export default {
   mounted() {
     getState().state = 'Comfy'
 
+    axios.get(`http://142.1.5.223:1645/users/${getState().userId}`).then(res => {
+      getState().user = res.data.name
+    })
+
     axios.get('/requests/placements-1.json').then((request) => {
       this.tests = request.data.tests
     })
   },
 
   methods: {
-    nextTesting() {
+    nextTesting(results) {
       this.finished = true
+      axios.post(`http://142.1.5.223:1645/users/${getState().userId}/difficulty/set`, {
+        new: Math.max(4 - results.incorrect.length / 4, 0)
+      })
+
+      axios.post(`http://142.1.5.223:1645/users/${getState().userId}/sessions/add`, results)
     }
   }
 }
