@@ -35,13 +35,9 @@ export default {
     axios.get("http://142.1.5.223:1645/users/0").then(res => {
       this.name = res.data.name;
       this.rank = res.data.rank;
-      debugger;
-    requestSpeak("test", e=>{});
     });
 
     document.querySelectorAll(".tts").forEach(el => {
-  debugger;
-  console.log(el);
   el.onmouseenter = mouseEvent => {
     let elem = document.elementFromPoint(mouseEvent.x, mouseEvent.y);
     let data = {
