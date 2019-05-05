@@ -2,7 +2,7 @@
   <div id="app">
     <div v-if="navState.state !== 'NoShow'">
       <div v-if="navState.state === 'Normal'" class="shadow text-5xl" :class="navState.color" id="nav">
-        Lectio {{ navState.user }}
+        Lectio
       </div>
       <div v-if="navState.state === 'Comfy'" class="shadow flex" :class="navState.color" id="nav">
         <div class="w-1/2 text-5xl">Lectio</div>
