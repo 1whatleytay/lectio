@@ -1,7 +1,7 @@
 <template>
   <div>
     <Testing v-if="stage === 'Testing'" @finished="nextTesting"/>
-    <Learning v-if="stage === 'Learning'" @finished="nextLearning"/>
+    <Learning v-if="stage === 'Learning'" :words="words" @finished="nextLearning"/>
     <Finished v-if="stage === 'Finished'" :info="info"/>
   </div>
 </template>
@@ -27,7 +27,11 @@ export default {
   methods: {
     nextTesting(words) {
       this.words = words
-      this.stage = 'Learning'
+      if (this.words.length === 0) {
+        this.stage = 'Finished'
+      } else {
+        this.stage = 'Learning'
+      }
     },
 
     nextLearning(info) {

@@ -5,20 +5,22 @@
       <span v-for="(word, id) in segments" v-bind:key="id"
         v-bind:class="{ 'text-red': word.state }">{{ (id !== 0 ? ' ' : '') + word.word }}</span>
     </div>
+    <Loading :current="index + 1" :max="tests.length" color="bg-blue-dark"/>
     <Recording @finished="checkAnswer"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import compare from '../script/compare.js'
+import { compare } from '../script/compare.js'
 
 import Recording from '../components/Recording.vue'
+import Loading from '../components/Loading.vue'
 
 export default {
   name: 'Testing',
 
-  components: { Recording },
+  components: { Recording, Loading },
 
   data() {
     return {
@@ -32,6 +34,7 @@ export default {
 
   mounted() {
     axios.get('/requests/tests-1.json').then((request) => {
+      console.log('Mounted')
       this.tests = request.data.tests
 
       const splits = this.tests[this.index].split(' ')
@@ -44,12 +47,14 @@ export default {
   methods: {
     checkAnswer(result) {
       const incorrects = compare(result, this.tests[this.index])
-      this.wrongWords.concat(incorrects)
+      this.wrongWords = this.wrongWords.concat(incorrects)
 
       if (incorrects.length === 0) {
         this.index++
         if (this.tests.length <= this.index) {
+          console.log(this.wrongWords)
           this.$emit('finished', this.wrongWords)
+          return
         }
       }
 
