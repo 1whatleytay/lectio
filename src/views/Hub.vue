@@ -22,11 +22,6 @@ import Analysis from '@/components/Analytics.vue';
 export default {
   components: {
     Analysis
-  },
-  data(){
-    return {
-      publicPath: process.env.BASE_URL
-    }
   }
 }
 </script>
