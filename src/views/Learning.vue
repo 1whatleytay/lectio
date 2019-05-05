@@ -4,7 +4,7 @@
     <div class="text-4xl mb-2" v-bind:class="{ 'text-red': incorrect }">
       {{ words.length > index ? words[index] : '' }}
     </div>
-    <Recording ref="recording" @record="tryAgain" @finished="checkAnswer"/>
+    <Recording ref="recording" short="true" @record="tryAgain" @finished="checkAnswer"/>
   </div>
 </template>
 
@@ -12,8 +12,6 @@
 import axios from 'axios'
 
 import Recording from '../components/Recording.vue'
-
-const keepListening = true;
 
 function process(text) {
   return text.trim().toLowerCase()
@@ -48,8 +46,6 @@ export default {
           axios.get('/requests/analytics-1.json').then((request) => {
             this.$emit('finished', request.data)
           })
-        } else if (keepListening) {
-          this.$refs['recording'].startRecording()
         }
       } else {
         this.incorrect = true
