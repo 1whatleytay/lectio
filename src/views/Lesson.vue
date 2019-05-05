@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Testing v-if="stage === 'Testing'" @finished="nextTesting"/>
+    <Testing v-if="stage === 'Testing'" :tests="tests" @finished="nextTesting"/>
     <Learning v-if="stage === 'Learning'" :words="words" @finished="nextLearning"/>
     <Finished v-if="stage === 'Finished'" :info="info"/>
   </div>
@@ -20,7 +20,8 @@ export default {
 
   data() {
     return {
-      stage: 'Finished',
+      stage: 'Testing',
+      tests: [ ],
       words: [ ],
       info: { },
     }
@@ -28,6 +29,11 @@ export default {
 
   mounted() {
     getState().state = 'Normal'
+
+
+    axios.get('/requests/tests-1.json').then((request) => {
+      this.tests = request.data.tests
+    })
   },
 
   methods: {

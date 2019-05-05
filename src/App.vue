@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-  <div class="bg-lectio" id="nav">
-      <p class="text-left">
+    <div v-if="navState.state !== 'NoShow'">
+      <div v-if="navState.state === 'Normal'" class="shadow text-4xl" :class="navState.color" id="nav">
         Lectio
-        <span class="float-right text-2xl">
-          {{ name }}
-          <br>
-          #{{ rank }} in the world
-        </span>
-      </p>
+      </div>
+      <div v-if="navState.state === 'Comfy'" class="shadow flex" :class="navState.color" id="nav">
+        <div class="w-1/2 text-4xl text-left pl-4">Lectio</div>
+        <div class="w-1/2 text-xl mt-2 text-right pr-4">Welcome {{ navState.user }}</div>
+      </div>
     </div>
     <router-view />
     <div class="py-8"></div>
@@ -18,14 +17,25 @@
 <script>
 import { NavState } from './script/nav.js'
 
+import axios from 'axios'
+
 export default {
   name: 'App',
 
   data() {
     return {
-      navState: new NavState()
+      name: "",
+      rank: -1,
+      navState: new NavState(),
     }
   },
+
+  mounted() {
+    axios.get("http://142.1.5.223:1645/users/0").then(res => {
+      this.name = res.data.name;
+      this.rank = res.data.rank;
+    })
+  }
 }
 </script>
 
@@ -35,25 +45,6 @@ export default {
 @tailwind utilities;
 </style>
 
-<script>
-import axios from 'axios';
-
-export default {
-  data() {
-    return {
-      name: "",
-      rank: -1,
-    }
-  },
-  mounted() {
-    axios.get("http://142.1.5.223:1645/users/0").then(res => {
-      this.name = res.data.name;
-      this.rank = res.data.rank;
-    })
-  },
-}
-</script>
-
 <style>
   #app{
     text-align: center;
@@ -61,7 +52,6 @@ export default {
 
   #nav{
     color: white;
-    font-size: 3em;
     padding: 0.5em;
     margin-bottom: 1em;
   }

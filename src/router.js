@@ -8,16 +8,23 @@ import Analytics from './components/Analytics.vue'
 // Views
 import Hub from './views/Hub.vue'
 import Lesson from './views/Lesson.vue'
+import Placement from './views/Placement.vue'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [{
+  routes: [
+    {
       path: '/lesson',
       name: 'lesson',
       component: Lesson
+    },
+    {
+      path: '/placement',
+      name: 'placement',
+      component: Placement
     },
 
     // Tests

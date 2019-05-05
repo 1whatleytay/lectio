@@ -1,5 +1,8 @@
 <template>
-  <Analytics v-if="info" :info="info"/>
+  <div>
+    <Analytics v-if="info" :info="info"/>
+    <router-link tag="a" to="/hub">Back</router-link>
+  </div>
 </template>
 
 <script>

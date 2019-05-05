@@ -19,29 +19,25 @@ export default {
   name: 'Testing',
 
   components: { Recording, Loading, SectionedText },
+  props: [ 'tests' ],
+  watch: {
+    tests() {
+      this.text = this.tests[this.index]
+    }
+  },
 
   data() {
     return {
       index: 0,
-      tests: [ ],
       text: '',
       incorrect: [ ],
       wrongWords: [ ],
     }
   },
 
-  mounted() {
-    axios.get('/requests/tests-1.json').then((request) => {
-      this.tests = request.data.tests
-
-      this.text = this.tests[this.index]
-    })
-  },
-
   methods: {
     checkAnswer(result) {
       this.incorrect = compare(result, this.tests[this.index])
-      console.log(this.incorrect)
       this.wrongWords = this.wrongWords.concat(this.incorrect)
 
       if (this.incorrect.length === 0) {

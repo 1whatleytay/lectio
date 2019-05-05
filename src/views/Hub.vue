@@ -1,8 +1,9 @@
 <template>
 <div>
   <div class="text-center">
-    <router-link to="/lesson">
-      <button class="play-button w-64 h-64 rounded-full"></button>
+    <router-link :to="needsPlacement() ? '/placement' : '/lesson'">
+      <button class="play-button w-64 h-64 rounded-full"
+        v-bind:class="{ 'place-button': needsPlacement() }"></button>
     </router-link>
   </div>
   <br><br>
@@ -27,11 +28,18 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://142.1.5.223:1645/users/0").then(res => {
+    getState().state = 'Comfy'
+
+    axios.get("http://142.1.5.223:1645/users/112").then(res => {
       this.msg = res.data;
     })
   },
 
+  methods: {
+    needsPlacement() {
+      return this.msg.sessions.length === 0
+    }
+  }
 }
 </script>
 
@@ -48,6 +56,11 @@ export default {
 
 .play-button {
   background-image: url('/ui/play.svg');
+  background-size: cover;
+}
+
+.place-button {
+  background-image: url('/ui/place.svg');
   background-size: cover;
 }
 </style>
