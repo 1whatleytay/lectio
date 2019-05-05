@@ -7,7 +7,7 @@
   </div>
   <br><br>
 
-  <Analysis :info="msg"/>
+  <Analysis :user="msg"/>
 </div>
 </template>
 
@@ -25,8 +25,9 @@ export default {
     }
   },
   mounted() {
-    axios.get("/requests/analytics-1.json").then(e => {
-      this.msg = e.data;
+    axios.get("http://142.1.5.223:1645/users/0").then(res => {
+      console.log(res.data);
+      this.msg = res.data;
     })
   },
 

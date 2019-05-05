@@ -1,19 +1,19 @@
 <template>
   <div class="w-4/5 p-4 mx-auto rounded results border border-grey text-center">
-    <div class="text-5xl mb-8">Analytics for: {{ info.user.name }}</div>
+    <div class="text-5xl mb-8">Analytics for: {{ user.name }}</div>
     <div class="flex flex-wrap mb-4 sm:mb-10">
       <div class="lg:w-1/3 sm:w-full">
         <canvas ref="pie" class="w-1/3"/>
       </div>
       <div class="lg:w-2/3 sm:w-full text-5xl pt-12">
-        #{{ info.user.rank }} in the World
+        #{{ user.rank }} in the World
       </div>
     </div>
     <div class="w-full">
       <div class="text-4xl m-2"> Words Studied </div>
-      <div v-for="(word, id) in info.results.words"
-        v-bind:key="id" v-bind:class="{ 'text-red': !word.state }">{{ word.word }}
-      </div>
+      <div v-for="word in user.sessions[0].correct" v-bind:key="word">{{ word }}</div>
+      <div v-for="word in user.sessions[0].incorrect" v-bind:key="word" class="text-red">{{ word }}</div>
+      
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ import Chart from 'chart.js'
 export default {
   name: 'Analytics',
 
-  props: [ 'info' ],
+  props: [ 'user' ],
 
   data() {
     return {
@@ -44,8 +44,8 @@ export default {
           {
             label: 'Results',
             data: [
-              this.info.results.correct,
-              this.info.results.total - this.info.results.correct
+              this.sessions[0].correct.length,
+              this.sessions[0].incorrect.length
             ],
             backgroundColor: [
               'rgba(99, 255, 132, 0.2)',
