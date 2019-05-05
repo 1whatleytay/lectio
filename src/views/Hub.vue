@@ -1,9 +1,9 @@
 <template>
 <div>
   <div class="text-center">
-      <router-link to="/lesson">
-        <button class="play-button w-64 h-64 rounded-full"></button>
-      </router-link>
+    <router-link to="/lesson">
+      <button class="play-button w-64 h-64 rounded-full"></button>
+    </router-link>
   </div>
   <br><br>
 
@@ -12,8 +12,10 @@
 </template>
 
 <script>
-import Analysis from '@/components/Analytics.vue';
+import Analysis from '../components/Analytics.vue';
 import axios from 'axios';
+
+import { getState } from '../script/nav.js'
 
 export default {
   components: {
@@ -25,6 +27,8 @@ export default {
     }
   },
   mounted() {
+    getState().state = 'Comfy'
+
     axios.get("/requests/analytics-1.json").then(e => {
       this.msg = e.data;
     })

@@ -11,6 +11,8 @@ import Testing from './Testing.vue'
 import Learning from './Learning.vue'
 import Finished from './Finished.vue'
 
+import { getState } from '../script/nav.js'
+
 export default {
   name: 'Lesson',
 
@@ -22,6 +24,10 @@ export default {
       words: [ ],
       info: { },
     }
+  },
+
+  mounted() {
+    getState().state = 'Normal'
   },
 
   methods: {
