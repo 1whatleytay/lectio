@@ -2,7 +2,7 @@
   <div id="app">
     <div v-if="navState.state !== 'NoShow'">
       <div v-if="navState.state === 'Normal'" class="shadow text-4xl" :class="navState.color" id="nav">
-        Lectio
+       <span style="font-size:70px;"> Lectio</span><br> <span style="font-size:20px;">Reading Made Better</span>
       </div>
       <div v-if="navState.state === 'Comfy'" class="shadow flex" :class="navState.color" id="nav">
         <div class="w-1/2 text-4xl text-left pl-4">Lectio</div>
