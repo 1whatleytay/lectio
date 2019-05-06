@@ -39,6 +39,7 @@ export default {
       this.text = last[0].transcript
       if (this.mimic) {
         for (let res in last) {
+          // If the word matches the detected sound
           if (res.transcript === this.mimic) {
             this.text = res.transcript
             break
